@@ -5,8 +5,6 @@
         to improve the speed and overall quality of the program. PyGame is not the most efficient
         framework and I would like to optimize this project.
 '''
-
-
 import pygame
 import random
 import time
@@ -38,7 +36,6 @@ text = pygame.font.SysFont('Times New Roman', 30)
 start = text.render('Start', False, (255, 255, 255))
 reset = text.render('Reset', False, (255, 255, 255))
 
-
 def move(imgx, imgy, path, i):
     moveY = int(maze_height // col) + 0.5
     moveX = int(width // row) + 0.6
@@ -52,12 +49,10 @@ def move(imgx, imgy, path, i):
         imgx += moveX
     return imgx, imgy
 
-
 def isValid(i, j):
     if i < 0 or i >= row or j < 0 or j >= col:
         return False
     return True
-
 
 def graphify(cells):
     graph = {}
@@ -76,7 +71,6 @@ def graphify(cells):
                     graph[key].append(f'({i}, {j-1})')
     return graph
 
-
 def bfs(graph, start, goal):
     visited = []
     queue = [[start]]
@@ -92,7 +86,6 @@ def bfs(graph, start, goal):
                 if cell == goal:
                     return new_path
             visited.append(node)
-
 
 def findPath(cells):
     graph = graphify(cells)
@@ -129,7 +122,6 @@ def findPath(cells):
             currx -= 1
             route.append(l)
     return route
-
 
 while True:
     pressed = pygame.key.get_pressed()
