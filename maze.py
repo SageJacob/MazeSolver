@@ -71,7 +71,7 @@ def graphify(cells):
                     graph[key].append(f'({i}, {j-1})')
     return graph
 
-def bfs(graph, start, goal):
+def search(graph, start, goal):
     visited = []
     queue = [[start]]
     while queue:
@@ -93,7 +93,7 @@ def findPath(cells):
     goal = f'({col-1}, {0})'
     currx, curry = 0, row-1
     route = []
-    path = bfs(graph, start, goal)
+    path = search(graph, start, goal)
     for i in range(len(path)):
         # If x is single digit
         if path[i][2] == ',':
