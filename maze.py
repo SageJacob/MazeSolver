@@ -27,7 +27,7 @@ color = white
 btndown = False
 imgx, imgy = 0, maze_height - (maze_height//col)
 ogimgx, ogimgy = imgx, imgy
-image = pygame.image.load('Toby.png').convert()
+image = pygame.image.load('Images/Toby.png').convert()
 image = pygame.transform.scale(image, (width//row, maze_height//col))
 u, d, l, r = 0, 1, 2, 3
 path = []
@@ -35,6 +35,7 @@ pygame.font.init()
 text = pygame.font.SysFont('Times New Roman', 30)
 start = text.render('Start', False, (255, 255, 255))
 reset = text.render('Reset', False, (255, 255, 255))
+
 
 def move(imgx, imgy, path, i):
     moveY = int(maze_height // col) + 0.5
@@ -49,10 +50,12 @@ def move(imgx, imgy, path, i):
         imgx += moveX
     return imgx, imgy
 
+
 def isValid(i, j):
     if i < 0 or i >= row or j < 0 or j >= col:
         return False
     return True
+
 
 def graphify(cells):
     graph = {}
@@ -71,6 +74,7 @@ def graphify(cells):
                     graph[key].append(f'({i}, {j-1})')
     return graph
 
+
 def search(graph, start, goal):
     visited = []
     queue = [[start]]
@@ -86,6 +90,7 @@ def search(graph, start, goal):
                 if cell == goal:
                     return new_path
             visited.append(node)
+
 
 def findPath(cells):
     graph = graphify(cells)
@@ -122,6 +127,7 @@ def findPath(cells):
             currx -= 1
             route.append(l)
     return route
+
 
 while True:
     pressed = pygame.key.get_pressed()
