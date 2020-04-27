@@ -1,4 +1,2 @@
-# MazeSolver
-A program showing off various maze solving algorithms
+A path finding program
 ![](Images/SolvedExample.png)
-![](Images/UnsolvedExample.png)
