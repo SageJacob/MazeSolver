@@ -1,2 +1,2 @@
-A path finding program
+A pathfinding program
 ![](Images/SolvedExample.png)
