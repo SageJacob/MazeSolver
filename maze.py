@@ -99,6 +99,8 @@ def findPath(cells):
     currx, curry = 0, row-1
     route = []
     path = search(graph, start, goal)
+    if not path:
+        return None
     for i in range(len(path)):
         # If x is single digit
         if path[i][2] == ',':
@@ -183,13 +185,16 @@ while True:
             # Start button
             if x > width // 2 - (width // row) and x < width // 2 - (width // row) + width // row * 2 and y < maze_height + ((height - maze_height) // 4) + 50 and y > maze_height + ((height - maze_height) // 4):
                 path = findPath(cells)
-                cells[0][row-1] = 2
-                for i in range(len(path)):
-                    imgx, imgy = move(imgx, imgy, path, i)
-                    rowx = (int)(imgx / (width / row))
-                    coly = int(imgy / (maze_height / col))
-                    cells[rowx][coly] = 2
-                    screen.blit(image, (imgx, imgy))
+                if path:
+                    cells[0][row-1] = 2
+                    for i in range(len(path)):
+                        imgx, imgy = move(imgx, imgy, path, i)
+                        rowx = (int)(imgx / (width / row))
+                        coly = int(imgy / (maze_height / col))
+                        cells[rowx][coly] = 2
+                        screen.blit(image, (imgx, imgy))
+                else:
+                    print("Error: No possible path found!")
             # Reset button
             if x > width // 2 - (width // row) + 200 and x < width // 2 - (width // row) + width // row * 2 + 200 and y < maze_height + ((height - maze_height) // 4) + 50 and y > maze_height + ((height - maze_height) // 4):
                 imgx, imgy = ogimgx, ogimgy
