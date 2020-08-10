@@ -1,15 +1,15 @@
 '''
     Note:
-        This program was a challenge I made for myself in a weekend. I fully intend to come 
-        back to this program in the near future. My current thoughts are to swap over to JavaScript
-        to improve the speed and overall quality of the program. PyGame is not the most efficient
-        framework and I would like to optimize this project.
+        I'm not sure if it's the difference in CPU, OS, or PyGame version, however my macOS machine can't handle the 
+        animation of moving the Toby (the robot) while my windows machine can. To improve performace, I've removed the
+        animation from platforms that aren't win32.
 '''
 import pygame
 import random
 import time
 import math
 import numpy as np
+from sys import platform
 from pygame.locals import *
 
 col, row, prevx, prevy = 11, 11, 0, 0
@@ -193,8 +193,9 @@ while True:
                         coly = int(imgy / (maze_height / col))
                         cells[rowx][coly] = 2
                         screen.blit(image, (imgx, imgy))
-                        time.sleep(0.1)
-                        pygame.display.update()
+                        if platform == 'win32':
+                            time.sleep(0.1)
+                            pygame.display.update()
                 else:
                     print("Error: No possible path found!")
             # Reset button
