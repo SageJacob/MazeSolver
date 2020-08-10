@@ -193,6 +193,8 @@ while True:
                         coly = int(imgy / (maze_height / col))
                         cells[rowx][coly] = 2
                         screen.blit(image, (imgx, imgy))
+                        time.sleep(0.1)
+                        pygame.display.update()
                 else:
                     print("Error: No possible path found!")
             # Reset button
@@ -201,7 +203,7 @@ while True:
                 screen.blit(image, (imgx, imgy))
                 for i in range(col):
                     for j in range(row):
-                        if cells[i][j] == 2:
+                        if cells[i][j] == 2 or cells[i][j] == 1:
                             cells[i][j] = 0
         if event.type == pygame.MOUSEBUTTONUP:
             btndown = False
