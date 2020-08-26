@@ -1,9 +1,3 @@
-'''
-    Note:
-        I'm not sure if it's the difference in CPU, OS, or PyGame version, however my macOS machine can't handle the 
-        animation of moving the Toby (the robot) while my windows machine can. To improve performace, I've removed the
-        animation from platforms that aren't win32.
-'''
 import pygame
 import random
 import time
@@ -36,7 +30,7 @@ text = pygame.font.SysFont('Times New Roman', 30)
 start = text.render('Start', False, (255, 255, 255))
 reset = text.render('Reset', False, (255, 255, 255))
 
-
+# Moves Toby along the given path
 def move(imgx, imgy, path, i):
     moveY = int(maze_height // col) + 0.5
     moveX = int(width // row) + 0.6
@@ -50,14 +44,14 @@ def move(imgx, imgy, path, i):
         imgx += moveX
     return imgx, imgy
 
-
-def isValid(i, j):
+# Checks if in-bounds
+def isValid(i, j) -> bool:
     if i < 0 or i >= row or j < 0 or j >= col:
         return False
     return True
 
-
-def graphify(cells):
+# Converts 2D array into a graph
+def graphify(cells) -> dict:
     graph = {}
     for i in range(len(cells[0])):
         for j in range(len(cells)):
@@ -74,8 +68,8 @@ def graphify(cells):
                     graph[key].append(f'({i}, {j-1})')
     return graph
 
-
-def search(graph, start, goal):
+# Search algorithm (BFS)
+def search(graph, start, goal) -> None:
     visited = []
     queue = [[start]]
     while queue:
@@ -91,8 +85,8 @@ def search(graph, start, goal):
                     return new_path
             visited.append(node)
 
-
-def findPath(cells):
+# Find the optimal path from Toby to finish
+def findPath(cells) -> list:
     graph = graphify(cells)
     start = f'({0}, {row-1})'
     goal = f'({col-1}, {0})'
@@ -109,7 +103,7 @@ def findPath(cells):
                 y = int(path[i][4])
             else:
                 y = int(path[i][4:6])
-        # If x is double digitt
+        # If x is double digit
         else:
             x = int(path[i][1:3])
             if path[i][6] == ')':
@@ -129,7 +123,6 @@ def findPath(cells):
             currx -= 1
             route.append(l)
     return route
-
 
 while True:
     pressed = pygame.key.get_pressed()
