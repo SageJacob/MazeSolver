@@ -1,8 +1,5 @@
 import pygame
-import random
 import time
-import math
-import numpy as np
 from sys import platform
 from pygame.locals import *
 
